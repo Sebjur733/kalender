@@ -23,6 +23,18 @@ h2 {
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* 7 kolonner for hver dag i uken */
     gap: 10px;
+    width: 90%;
+}
+
+.calendar-header {
+    display: contents; /* Sikre at header-cellen vises som en del av grid-layout */
+}
+
+.calendar-weekday {
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    background-color: #ddd; /* Lys bakgrunn for ukedagene */
 }
 
 .calendar-day {

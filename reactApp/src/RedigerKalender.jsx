@@ -10,6 +10,11 @@ const monthNameToIndex = (monthName) => {
     return months.indexOf(monthName);
 };
 
+//Funksjon for å få navnene på ukedager
+const getWeekDays = () => {
+return ['Man', 'Tir', 'Ons', 'Tor', 'fre', 'Lør', 'Søn'];
+};
+
 const RedigerKalender = () => {
 
     const [kalenderData, setKalenderData] = useState({
@@ -55,6 +60,15 @@ const RedigerKalender = () => {
         return days;
     };
 
+    //Lag en array med ukedagene
+    const renderWeekDays = () => {
+        return getWeekDays().map((day, index) => (
+            <div key={index} className="calendar-weekday">
+                {day}
+            </div>
+        ));
+    };
+
     return (
         <div className="rediger-kalender">
             <h1>Rediger Kalender</h1>
@@ -64,6 +78,10 @@ const RedigerKalender = () => {
             <p>År: {kalenderData.year}</p>
 
             <div className="calendar-grid">
+                {/* Vis ukedager */}
+                <div className="calendar-header">
+                {renderWeekDays()}
+                </div>
                 {renderDays()} {/* Vis dagene */}
             </div>
         </div>
