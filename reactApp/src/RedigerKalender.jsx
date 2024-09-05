@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './RedigerKalender.css'; // Pass på at CSS-filen fortsatt er der
 
+// En funksjon for å konvertere månedsnavn til indeks
+const monthNameToIndex = (monthName) => {
+    const months = [
+        'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni',
+        'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'
+    ];
+    return months.indexOf(monthName);
+};
+
 const RedigerKalender = () => {
 
     const [kalenderData, setKalenderData] = useState({
-        kalenderNavn: '',
-        maned: 0,
-        ar: 2023
+        name: '',
+        month: 0,
+        year: 2023
     });
 
     // Hent data fra localStorage når komponenten mountes
@@ -27,8 +36,11 @@ const RedigerKalender = () => {
         return new Date(year, month + 1, 0).getDate();
     };
 
+    // Konverter månedsnavn til indeks
+    const monthIndex = monthNameToIndex(kalenderData.month);
+
     // Beregn antall dager i måneden
-    const totalDays = daysInMonth(kalenderData.year, kalenderData.month);
+    const totalDays = daysInMonth(kalenderData.year, monthIndex);
 
     // Lag en array med dagene i måneden
     const renderDays = () => {
