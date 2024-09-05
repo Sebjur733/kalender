@@ -41,15 +41,28 @@ const RedigerKalender = () => {
         return new Date(year, month + 1, 0).getDate();
     };
 
+    // Funksjon for å finne hvilken ukedag den første dagen i måneden faller på
+    const getFirstDayOfMonth = (year, month) => {
+        const date = new Date(year, month, 1);
+        return (date.getDay() + 6) % 7; // Konverter til 0 = mandag, 6 = søndag
+    };
+
     // Konverter månedsnavn til indeks
     const monthIndex = monthNameToIndex(kalenderData.month);
 
     // Beregn antall dager i måneden
     const totalDays = daysInMonth(kalenderData.year, monthIndex);
 
+    // Beregn hvilken ukedag den første dagen i måneden er
+    const firstDayIndex = getFirstDayOfMonth(kalenderData.year, monthIndex);
+
     // Lag en array med dagene i måneden
     const renderDays = () => {
         let days = [];
+        // Fyll ut tomme celler for dager før den første dagen i måneden
+        for (let i = 0; i < firstDayIndex; i++) {
+            days.push(<div key={`empty-${i}`} className="calendar-day empty"></div>);
+        }
         for (let day = 1; day <= totalDays; day++) {
             days.push(
                 <div key={day} className="calendar-day">
