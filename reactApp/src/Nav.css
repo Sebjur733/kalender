@@ -1,0 +1,43 @@
+/* Generell stil for body for å fjerne margin og padding */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Valgfritt: tilpass skrifttype */
+}
+
+/* Stiler for navigasjonsbaren */
+nav {
+    background-color: #929292;
+    padding: 1em;
+    position: fixed; /* Fester navigasjonsbaren til toppen */
+    top: 0;
+    left: 0;
+    width: 100%; /* Bredden på navigasjonsbaren */
+    z-index: 1000; /* Sørger for at navigasjonsbaren er over annet innhold */
+    display: flex;
+    justify-content: flex-end; /* Plasserer innholdet til høyre */
+}
+
+/* Stiler for navigasjonslisten */
+nav ul {
+    list-style: none;
+    margin-right: 3%;
+    padding: 0;
+    display: flex; /* For å plassere elementene horisontalt */
+}
+
+/* Stiler for navigasjonslisteelementene */
+nav ul li {
+    margin: 0;
+}
+
+/* Stiler for navigasjonslinkene */
+nav ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 0.5em 1em; /* Legger til padding for lenkene */
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}

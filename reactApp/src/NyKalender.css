@@ -1,0 +1,68 @@
+.ny-kalender {
+    padding: 1em;
+    position: fixed; /* Fester NyKalender til visningsvinduet */
+    top: 10%; /* Plasserer NyKalender 10% ned fra toppen av visningsvinduet */
+    left: 0;
+    width: 100%; /* Full bredde av visningsvinduet */
+    display: flex;
+    flex-direction: column; /* Organiserer innholdet vertikalt */
+    align-items: center; /* Sentrerer innholdet horisontalt */
+    box-sizing: border-box; /* Inkluderer padding i den totale bredden */
+}
+
+.ny-kalender h1 {
+    margin-bottom: 1em; /* Legger til litt plass under <h1> for å skille det fra andre elementer */
+}
+
+.form-container {
+    display: flex; /* Organiserer form-elementer horisontalt eller vertikalt */
+    flex-direction: column; /* Vertikal organisering av form-elementer */
+    gap: 1em; /* Legger til avstand mellom form-elementene */
+    width: 50%; /* Juster bredden på form-elementene */
+}
+
+.ny-kalender select {
+    width: 100%; /* Full bredde av containeren */
+    padding-right: 100px;
+    padding-top: 5px;
+    max-width: 300px; /* Maksimal bredde på dropdown-menyen */
+    margin-top: 1em;
+}
+
+
+.ny-kalender select:focus {
+    border-color: #297dab; /* Endrer kantfarge ved fokus */
+    outline: none; /* Fjerner standard outline */
+}
+
+.ny-kalender select option {
+    font-size: 16px;
+    padding: 0.5em; /* Gir litt padding til hver valg */
+    background-color: #fff; /* Setter bakgrunnsfargen til hvit */
+}
+
+.ny-kalender select:hover {
+    background-color: #e9e9e9; /* Endrer bakgrunnsfargen når du holder over */
+}
+
+
+
+.ny-kalender input, .ny-kalender button {
+    padding: 0.5em 1em; /* Gir input-feltene og knappene litt padding */
+    border: 1px solid #2f2e2e; /* Legger til en tynn kantlinje */
+    border-radius: 4px; /* Gjør kantene på input-feltene og knappene runde */
+    font-size: 16px; /* Skriftstørrelse på input-feltene og knappene */
+    width: 50%; /* Full bredde for input-feltene og knappene */
+    box-sizing: border-box; /* Inkluderer padding i den totale bredden */
+}
+
+.ny-kalender button {
+    background-color: #b5b6b5; /* Bakgrunnsfarge på knappene */
+    color: rgb(0, 0, 0); /* Tekstfarge på knappene */
+    cursor: pointer; /* Endrer musepekeren når du holder over knappene */
+    margin-top: 2em;
+}
+
+.ny-kalender button:hover {
+    background-color: #a7a7a7; /* Endrer bakgrunnsfargen når du holder over knappene */
+}

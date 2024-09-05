@@ -1,0 +1,11 @@
+.rediger-kalender {
+    padding: 1em;
+    position: fixed; /* Fester NyKalender til visningsvinduet */
+    top: 10%; /* Plasserer NyKalender 10% ned fra toppen av visningsvinduet */
+    left: 0;
+    width: 100%; /* Full bredde av visningsvinduet */
+    display: flex;
+    flex-direction: column; /* Organiserer innholdet vertikalt */
+    align-items: center; /* Sentrerer innholdet horisontalt */
+    box-sizing: border-box; /* Inkluderer padding i den totale bredden */
+}

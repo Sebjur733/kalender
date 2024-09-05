@@ -1,0 +1,37 @@
+/* MainContent.css */
+.main-content {
+    padding: 1em;
+    position: fixed; /* Fester MainContent til visningsvinduet */
+    top: 10%; /* Plasserer MainContent 10% ned fra toppen av visningsvinduet */
+    left: 0;
+    width: 100%; /* Full bredde av visningsvinduet */
+    display: flex;
+    flex-direction: column; /* Organiserer innholdet vertikalt */
+    align-items: center; /* Sentrerer innholdet horisontalt */
+    box-sizing: border-box; /* Inkluderer padding i den totale bredden */
+}
+
+.main-content h1 {
+    margin-bottom: 1em; /* Legger til litt plass under <h1> for å skille det fra knappene */
+}
+
+.button-container {
+    display: flex; /* Organiserer knappene horisontalt */
+    gap: 1em; /* Legger til avstand mellom knappene */
+}
+
+.main-content button {
+    padding: 0.5em 1em; /* Gir knappene litt padding */
+    border: none; /* Fjerner standard kantlinje */
+    border-radius: 4px; /* Gjør kantene på knappene runde */
+    background-color: #b5b6b5; /* Bakgrunnsfarge på knappene */
+    color: rgb(0, 0, 0); /* Tekstfarge på knappene */
+    cursor: pointer; /* Endrer musepekeren når du holder over knappene */
+    font-size: 16px; /* Skriftstørrelse på knappene */
+}
+
+.main-content button:hover {
+    background-color: #a7a7a7; /* Endrer bakgrunnsfargen når du holder over knappene */
+}
+
+

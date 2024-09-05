@@ -1,0 +1,16 @@
+/* Footer.css */
+.footer {
+    background-color: #6a6a6a; /* Mørk bakgrunnsfarge */
+    color: white; /* Hvit tekstfarge */
+    padding: 1em; /* Litt padding rundt innholdet */
+    text-align: center; /* Sentrer teksten horisontalt */
+    position: fixed; /* Fester footeren til bunnen av skjermen */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full bredde av visningsvinduet */
+    box-sizing: border-box; /* Inkluderer padding i den totale bredden */
+}
+
+.contact-info p {
+    margin: 0.5em 0; /* Litt margin mellom paragrafene */
+}
