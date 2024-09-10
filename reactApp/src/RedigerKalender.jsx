@@ -23,6 +23,12 @@ const RedigerKalender = () => {
         year: 2023
     });
 
+    const [events, setEvents] = useState({});
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedDay, setSelectedDay] = useState(null);
+    const [eventTitle, setEventTitle] = useState('');
+    const [eventDetails, setEventDetails] = useState('');
+
     // Hent data fra localStorage når komponenten mountes
     useEffect(() => {
         const data = localStorage.getItem('calendarData');
@@ -49,27 +55,69 @@ const RedigerKalender = () => {
 
     // Konverter månedsnavn til indeks
     const monthIndex = monthNameToIndex(kalenderData.month);
-
     // Beregn antall dager i måneden
     const totalDays = daysInMonth(kalenderData.year, monthIndex);
-
     // Beregn hvilken ukedag den første dagen i måneden er
     const firstDayIndex = getFirstDayOfMonth(kalenderData.year, monthIndex);
+
+    const handleAddEventClick = (day) => {
+        setSelectedDay(day);  // Sett valgt dag
+        setIsModalOpen(true);  // Åpne modalen
+    };
+
+    const handleSaveEvent = () => {
+        if (eventTitle.trim() === '') {
+            alert('Tittel kan ikke være tom.');
+            return;
+        }
+        // Lagre eventet i state for den valgte dagen
+        setEvents(prevEvents => ({
+            ...prevEvents,
+            [selectedDay]: {
+                title: eventTitle,
+                details: eventDetails
+            }
+        }));
+        
+        // Tøm modal input
+        setEventTitle('');
+        setEventDetails('');
+        setIsModalOpen(false);  // Lukk modalen
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+        setEventTitle('');
+        setEventDetails('');
+    };
 
     // Lag en array med dagene i måneden
     const renderDays = () => {
         let days = [];
+
         // Fyll ut tomme celler for dager før den første dagen i måneden
         for (let i = 0; i < firstDayIndex; i++) {
             days.push(<div key={`empty-${i}`} className="calendar-day empty"></div>);
         }
+
+        // Lag en celle for hver dag i måneden med knapp for å legge til hendelse
         for (let day = 1; day <= totalDays; day++) {
             days.push(
                 <div key={day} className="calendar-day">
-                    {day}
+                    <div className="day-number">{day}</div>
+                    {events[day] ? (
+                        <div className="event-box" onClick={() => alert(`${events[day].title}: ${events[day].details}`)}>
+                            {events[day].title}
+                        </div>
+                    ) : (
+                        <button onClick={() => handleAddEventClick(day)}>
+                            Legg til event
+                        </button>
+                    )}
                 </div>
             );
         }
+
         return days;
     };
 
@@ -97,6 +145,28 @@ const RedigerKalender = () => {
                 </div>
                 {renderDays()} {/* Vis dagene */}
             </div>
+            
+              {/* Modal for å legge til event */}
+              {isModalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3>Legg til event for dag {selectedDay}</h3>
+                        <input
+                            type="text"
+                            placeholder="Tittel"
+                            value={eventTitle}
+                            onChange={(e) => setEventTitle(e.target.value)}
+                        />
+                        <textarea
+                            placeholder="Detaljer om hendelsen"
+                            value={eventDetails}
+                            onChange={(e) => setEventDetails(e.target.value)}
+                        />
+                        <button onClick={handleSaveEvent}>Legg til event</button>
+                        <button onClick={handleModalClose}>Lukk</button>
+                    </div>
+                </div>
+            )}
         </div>
         
     );

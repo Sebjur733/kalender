@@ -44,7 +44,45 @@ h2 {
     background-color: #f9f9f9;
     height: 100px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 16px;
 }
+
+.day-number {
+    font-size: 20px; /* Juster størrelsen på dag-tallet hvis ønskelig */
+    margin-bottom: 10px; /* Litt avstand mellom tallet og input-feltet */
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Halvgjennomsiktig bakgrunn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-width: 100%;
+}
+
+.event-box {
+    background-color: #2f95d5;
+    color: white;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
