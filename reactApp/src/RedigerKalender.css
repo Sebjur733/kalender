@@ -42,7 +42,6 @@ h2 {
     padding: 20px;
     text-align: center;
     background-color: #f9f9f9;
-    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,9 +49,13 @@ h2 {
     font-size: 16px;
 }
 
+.calendar-day button {
+    margin-top: 5px;
+}
+
 .day-number {
-    font-size: 20px; /* Juster størrelsen på dag-tallet hvis ønskelig */
-    margin-bottom: 10px; /* Litt avstand mellom tallet og input-feltet */
+    font-weight: bold;
+    margin-bottom: 5px; /* Litt avstand under dagsnummeret */
 }
 
 .modal-overlay {
@@ -77,12 +80,13 @@ h2 {
 }
 
 .event-box {
-    background-color: #2f95d5;
+    background-color: #118eaa;
     color: white;
     padding: 5px;
-    margin-top: 10px;
+    margin-top: 5px;
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
+    width: 100%; /* Sørg for at event-boksen fyller bredden av kalenderdagen */
 }
 

@@ -71,12 +71,13 @@ const RedigerKalender = () => {
             return;
         }
         // Lagre eventet i state for den valgte dagen
+        // Hvis det allerede finnes eventer på denne dagen, legg til i arrayen, ellers lag en ny array
         setEvents(prevEvents => ({
             ...prevEvents,
-            [selectedDay]: {
+            [selectedDay]: [...(prevEvents[selectedDay] || []), {
                 title: eventTitle,
                 details: eventDetails
-            }
+            }]
         }));
         
         // Tøm modal input
@@ -100,26 +101,27 @@ const RedigerKalender = () => {
             days.push(<div key={`empty-${i}`} className="calendar-day empty"></div>);
         }
 
-        // Lag en celle for hver dag i måneden med knapp for å legge til hendelse
-        for (let day = 1; day <= totalDays; day++) {
-            days.push(
-                <div key={day} className="calendar-day">
-                    <div className="day-number">{day}</div>
-                    {events[day] ? (
-                        <div className="event-box" onClick={() => alert(`${events[day].title}: ${events[day].details}`)}>
-                            {events[day].title}
-                        </div>
-                    ) : (
-                        <button onClick={() => handleAddEventClick(day)}>
-                            Legg til event
-                        </button>
-                    )}
-                </div>
-            );
-        }
+       // Lag en celle for hver dag i måneden med knapp for å legge til hendelse
+       for (let day = 1; day <= totalDays; day++) {
+        days.push(
+            <div key={day} className="calendar-day">
+                <div className="day-number">{day}</div>
+                {/* Vis eventer som er lagret for denne dagen */}
+                {events[day] && events[day].map((event, index) => (
+                    <div key={index} className="event-box" onClick={() => alert(`${event.title}: ${event.details}`)}>
+                        {event.title}
+                    </div>
+                ))}
+                {/* Knapp for å legge til flere eventer */}
+                <button onClick={() => handleAddEventClick(day)}>
+                    Legg til event
+                </button>
+            </div>
+        );
+    }
 
-        return days;
-    };
+    return days;
+};
 
     //Lag en array med ukedagene
     const renderWeekDays = () => {
