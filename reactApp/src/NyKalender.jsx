@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importer useNavigate
 import MonthYearSelector from './MonthYearSelector';
 import './NyKalender.css'; // Pass på at CSS-filen fortsatt er der
@@ -8,6 +8,14 @@ const NyKalender = () => {
     const [selectedYear, setSelectedYear] = useState('');
     const [calendarName, setCalendarName] = useState('');
     const navigate = useNavigate(); // Bruk useNavigate for navigering
+
+    // useEffect for å fjerne gammel kalenderdata når siden lastes inn
+    useEffect(() => {
+        // Fjern gamle kalenderdata og events
+        localStorage.removeItem('calendarData');
+        localStorage.removeItem('calendarEvents');
+        console.log('Gamle kalenderdata fjernet.');
+    }, []);
 
     const handleMonthYearChange = (month, year) => {
         setSelectedMonth(month);

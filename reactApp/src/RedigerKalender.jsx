@@ -31,6 +31,7 @@ const RedigerKalender = () => {
 
     // Hent data fra localStorage når komponenten mountes
     useEffect(() => {
+        // Hent kalenderdata
         const data = localStorage.getItem('calendarData');
         if (data) {
             const parsedData = JSON.parse(data);
@@ -40,7 +41,14 @@ const RedigerKalender = () => {
                 year: parsedData.year
             });
         }
+    
+        // Hent eventer fra localStorage
+        const storedEvents = localStorage.getItem('calendarEvents');
+        if (storedEvents) {
+            setEvents(JSON.parse(storedEvents));
+        }
     }, []);
+    
 
     // Funksjon for å finne antall dager i måneden
     const daysInMonth = (year, month) => {
@@ -72,13 +80,20 @@ const RedigerKalender = () => {
         }
         // Lagre eventet i state for den valgte dagen
         // Hvis det allerede finnes eventer på denne dagen, legg til i arrayen, ellers lag en ny array
-        setEvents(prevEvents => ({
-            ...prevEvents,
-            [selectedDay]: [...(prevEvents[selectedDay] || []), {
-                title: eventTitle,
-                details: eventDetails
-            }]
-        }));
+        setEvents(prevEvents => {
+            const updatedEvents = {
+                ...prevEvents,
+                [selectedDay]: [...(prevEvents[selectedDay] || []), {
+                    title: eventTitle,
+                    details: eventDetails
+                }]
+            };
+    
+            // Lagre eventene i localStorage
+            localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents));
+    
+            return updatedEvents;
+        });
         
         // Tøm modal input
         setEventTitle('');
