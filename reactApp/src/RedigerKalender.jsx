@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './RedigerKalender.css'; // Pass på at CSS-filen fortsatt er der
+import html2pdf from 'html2pdf.js/dist/html2pdf';
+
+
 
 // En funksjon for å konvertere månedsnavn til indeks
 const monthNameToIndex = (monthName) => {
@@ -122,6 +125,21 @@ const RedigerKalender = () => {
             return updatedEvents;
         });
     };
+
+    const generatePDF = () => {
+        const element = document.querySelector('.rediger-kalender'); // Referanse til kalender-diven
+        
+        const opt = {
+            margin: 0.5,
+            filename: `${kalenderData.name}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+    
+        html2pdf().from(element).set(opt).save();
+    };
+    
     
     // Lag en array med dagene i måneden
     const renderDays = () => {
@@ -180,6 +198,8 @@ const RedigerKalender = () => {
             <h2>{kalenderData.name}</h2>
             <p>Måned: {kalenderData.month + 1}</p>
             <p>År: {kalenderData.year}</p>
+            <button onClick={generatePDF}>Lagre som PDF</button>
+            
 
             <div className="calendar-grid">
                 {/* Vis ukedager */}
@@ -188,6 +208,8 @@ const RedigerKalender = () => {
                 </div>
                 {renderDays()} {/* Vis dagene */}
             </div>
+
+            
             
               {/* Modal for å legge til event */}
               {isModalOpen && (
