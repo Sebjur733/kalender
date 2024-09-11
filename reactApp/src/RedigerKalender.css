@@ -90,3 +90,13 @@ h2 {
     width: 100%; /* Sørg for at event-boksen fyller bredden av kalenderdagen */
 }
 
+.delete-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+

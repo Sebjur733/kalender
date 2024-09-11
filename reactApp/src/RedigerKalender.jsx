@@ -107,36 +107,62 @@ const RedigerKalender = () => {
         setEventDetails('');
     };
 
+    const handleDeleteEvent = (day, index) => {
+        setEvents(prevEvents => {
+            const updatedEvents = { ...prevEvents };
+            updatedEvents[day].splice(index, 1); // Fjern eventen ved gitt index
+    
+            if (updatedEvents[day].length === 0) {
+                delete updatedEvents[day]; // Fjern hele dagen hvis ingen eventer er igjen
+            }
+    
+            // Oppdater localStorage
+            localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents));
+    
+            return updatedEvents;
+        });
+    };
+    
     // Lag en array med dagene i måneden
     const renderDays = () => {
         let days = [];
-
+    
         // Fyll ut tomme celler for dager før den første dagen i måneden
         for (let i = 0; i < firstDayIndex; i++) {
             days.push(<div key={`empty-${i}`} className="calendar-day empty"></div>);
         }
-
-       // Lag en celle for hver dag i måneden med knapp for å legge til hendelse
-       for (let day = 1; day <= totalDays; day++) {
-        days.push(
-            <div key={day} className="calendar-day">
-                <div className="day-number">{day}</div>
-                {/* Vis eventer som er lagret for denne dagen */}
-                {events[day] && events[day].map((event, index) => (
-                    <div key={index} className="event-box" onClick={() => alert(`${event.title}: ${event.details}`)}>
-                        {event.title}
-                    </div>
-                ))}
-                {/* Knapp for å legge til flere eventer */}
-                <button onClick={() => handleAddEventClick(day)}>
-                    Legg til event
-                </button>
-            </div>
-        );
-    }
-
-    return days;
-};
+    
+        // Lag en celle for hver dag i måneden med knapp for å legge til hendelse
+        for (let day = 1; day <= totalDays; day++) {
+            days.push(
+                <div key={day} className="calendar-day">
+                    <div className="day-number">{day}</div>
+                    {/* Vis eventer som er lagret for denne dagen */}
+                    {events[day] && events[day].map((event, index) => (
+                        <div key={index} className="event-box">
+                            <span onClick={() => alert(`${event.title}: ${event.details}`)}>
+                                {event.title}
+                            </span>
+                            {/* Slett event-knapp */}
+                            <button 
+                                className="delete-btn" 
+                                onClick={() => handleDeleteEvent(day, index)} 
+                                title="Slett event">
+                                🗑️
+                            </button>
+                        </div>
+                    ))}
+                    {/* Knapp for å legge til flere eventer */}
+                    <button onClick={() => handleAddEventClick(day)}>
+                        Legg til event
+                    </button>
+                </div>
+            );
+        }
+    
+        return days;
+    };
+    
 
     //Lag en array med ukedagene
     const renderWeekDays = () => {
