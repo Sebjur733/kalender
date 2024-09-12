@@ -82,12 +82,12 @@ h2 {
 .event-box {
     background-color: #118eaa;
     color: white;
-    padding: 5px;
+    padding: 1px;
     margin-top: 5px;
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
-    width: 100%; /* Sørg for at event-boksen fyller bredden av kalenderdagen */
+    width: 50%; /* Sørg for at event-boksen fyller bredden av kalenderdagen */
 }
 
 .delete-btn {

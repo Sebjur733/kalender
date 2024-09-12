@@ -76,7 +76,7 @@ h1 {
 /* Eventer som tekst i dagene */
 .event-text {
     background-color: #e3f2fd;
-    color: #a10404;
+    color: #000000;
     padding: 1px;
     border-radius: 4px;
     text-align: left;

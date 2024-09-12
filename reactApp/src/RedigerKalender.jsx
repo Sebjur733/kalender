@@ -79,20 +79,29 @@ const RedigerKalender = () => {
         setIsModalOpen(true);  // Åpne modalen
     };
 
+    const generateUniqueId = () => {
+        return '_' + Math.random().toString(36).substr(2, 9); // En enkel unik ID-generator
+    };
+    
+
     const handleSaveEvent = () => {
         if (eventTitle.trim() === '') {
             alert('Tittel kan ikke være tom.');
             return;
         }
+    
+        // Lag en ny ID for eventet
+        const newEvent = {
+            id: generateUniqueId(), // Generer en unik ID
+            title: eventTitle,
+            details: eventDetails
+        };
+    
         // Lagre eventet i state for den valgte dagen
-        // Hvis det allerede finnes eventer på denne dagen, legg til i arrayen, ellers lag en ny array
         setEvents(prevEvents => {
             const updatedEvents = {
                 ...prevEvents,
-                [selectedDay]: [...(prevEvents[selectedDay] || []), {
-                    title: eventTitle,
-                    details: eventDetails
-                }]
+                [selectedDay]: [...(prevEvents[selectedDay] || []), newEvent]
             };
     
             // Lagre eventene i localStorage
@@ -113,13 +122,19 @@ const RedigerKalender = () => {
         setEventDetails('');
     };
 
-    const handleDeleteEvent = (day, index) => {
+    const handleDeleteEvent = (day, eventId) => {
         setEvents(prevEvents => {
             const updatedEvents = { ...prevEvents };
-            updatedEvents[day].splice(index, 1); // Fjern eventen ved gitt index
     
-            if (updatedEvents[day].length === 0) {
-                delete updatedEvents[day]; // Fjern hele dagen hvis ingen eventer er igjen
+            // Kontroller om det finnes eventer for den valgte dagen
+            if (updatedEvents[day]) {
+                // Fjern eventen med den spesifikke ID-en
+                updatedEvents[day] = updatedEvents[day].filter(event => event.id !== eventId);
+    
+                // Fjern hele dagen hvis ingen eventer er igjen
+                if (updatedEvents[day].length === 0) {
+                    delete updatedEvents[day];
+                }
             }
     
             // Oppdater localStorage
@@ -128,6 +143,10 @@ const RedigerKalender = () => {
             return updatedEvents;
         });
     };
+    
+    
+    
+    
 
     
     // Funksjonen som lagrer kalenderdata og navigerer til visningssiden
@@ -159,20 +178,20 @@ const RedigerKalender = () => {
                 <div key={day} className="calendar-day">
                     <div className="day-number">{day}</div>
                     {/* Vis eventer som er lagret for denne dagen */}
-                    {events[day] && events[day].map((event, index) => (
-                        <div key={index} className="event-box">
-                            <span onClick={() => alert(`${event.title}: ${event.details}`)}>
-                                {event.title}
-                            </span>
-                            {/* Slett event-knapp */}
-                            <button 
-                                className="delete-btn" 
-                                onClick={() => handleDeleteEvent(day, index)} 
-                                title="Slett event">
-                                🗑️
-                            </button>
-                        </div>
-                    ))}
+                    {events[day] && events[day].map(event => (
+    <div key={event.id} className="event-box">
+        <span onClick={() => alert(`${event.title}: ${event.details}`)}>
+            {event.title}
+        </span>
+        <button 
+            className="delete-btn" 
+            onClick={() => handleDeleteEvent(day, event.id)} 
+            title="Slett event">
+            🗑️
+        </button>
+    </div>
+))}
+
                     {/* Knapp for å legge til flere eventer */}
                     <button onClick={() => handleAddEventClick(day)}>
                         Legg til event
