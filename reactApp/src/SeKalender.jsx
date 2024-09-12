@@ -25,8 +25,13 @@ const SeKalender = () => {
     const firstDayIndex = getFirstDayOfMonth(kalenderData.year, monthIndex);
 
     const generatePDF = () => {
-        const element = document.querySelector('.calendar-grid'); // Kalenderens grid
-        
+        const element = document.querySelector('.pdf-content'); // Velg wrapper-div som inneholder både header og kalender-grid
+    
+        if (!element) {
+            console.error('Elementet ble ikke funnet!');
+            return;
+        }
+    
         const opt = {
             margin: 0.5, // Margin rundt innholdet
             filename: `${kalenderData.name}.pdf`,
@@ -34,9 +39,10 @@ const SeKalender = () => {
             html2canvas: { scale: 1 }, // Juster skalaen for å få innholdet til å passe
             jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } // Landskapsmodus for bredere format
         };
-        
+    
         html2pdf().from(element).set(opt).save();
     };
+    
     
 
     // Lag en array med dagene i måneden
@@ -79,20 +85,24 @@ const SeKalender = () => {
 
     return (
         <div className="se-kalender">
-            <h1>{kalenderData.name}</h1>
-            <p>Måned: {kalenderData.month + 1}</p>
-            <p>År: {kalenderData.year}</p>
-            <button onClick={generatePDF}>Lagre som PDF</button>
-
-            <div className="calendar-grid">
-                {/* Vis ukedager */}
-                <div className="calendar-header">
-                    {renderWeekDays()}
+            <div className="pdf-content"> {/* Ny wrapper-div */}
+                {/* Legg til en header for PDF-utskrift */}
+                <div className="pdf-header">
+                    {kalenderData.name} - {kalenderData.month} - {kalenderData.year}
                 </div>
-                {renderDays()} {/* Vis dagene */}
+    
+                <div className="calendar-grid">
+                    {/* Vis ukedager */}
+                    <div className="calendar-header">
+                        {renderWeekDays()}
+                    </div>
+                    {renderDays()} {/* Vis dagene */}
+                </div>
             </div>
+            <button onClick={generatePDF}>Lagre som PDF</button>
         </div>
     );
+    
 };
 
 // Funksjon for å konvertere månedsnavn til indeks

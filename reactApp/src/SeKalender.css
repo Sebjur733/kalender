@@ -96,6 +96,10 @@ h1 {
     content: ''; /* Fjern kommaet etter den siste eventen */
 }
 
+.pdf-content {
+    width: 100%;
+}
+
 /* Spesifikke stiler for PDF-utskrift */
 @media print {
     .se-kalender {
