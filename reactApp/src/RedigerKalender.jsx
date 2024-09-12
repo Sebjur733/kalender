@@ -126,19 +126,19 @@ const RedigerKalender = () => {
         });
     };
 
-    const generatePDF = () => {
-        const element = document.querySelector('.rediger-kalender'); // Referanse til kalender-diven
-        
-        const opt = {
-            margin: 0.5,
-            filename: `${kalenderData.name}.pdf`,
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-        };
     
-        html2pdf().from(element).set(opt).save();
+    // Funksjonen som lagrer kalenderdata og navigerer til visningssiden
+    const finishCalendar = () => {
+        // Lagre kalenderdata i localStorage
+        localStorage.setItem('calendarData', JSON.stringify(kalenderData));
+
+        // Lagre eventene (hvis det ikke allerede er gjort) - du kan oppdatere dem her om nødvendig
+        localStorage.setItem('calendarEvents', JSON.stringify(events));
+
+        // Naviger til 'seKalender'-siden
+        navigate('/seKalender');
     };
+    
     
     
     // Lag en array med dagene i måneden
@@ -198,7 +198,7 @@ const RedigerKalender = () => {
             <h2>{kalenderData.name}</h2>
             <p>Måned: {kalenderData.month + 1}</p>
             <p>År: {kalenderData.year}</p>
-            <button onClick={generatePDF}>Lagre som PDF</button>
+            <button onClick={finishCalendar}>Neste</button>
             
 
             <div className="calendar-grid">
