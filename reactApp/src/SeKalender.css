@@ -1,0 +1,96 @@
+/* seKalender.css */
+
+/* Generelle stiler */
+.se-kalender {
+    padding: 1em;
+    position: fixed;
+    top: 10%;
+    bottom: 100px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Stil for overskrift */
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Grid for kalenderen */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    width: 90%;
+}
+
+/* Header for ukedager */
+.calendar-header {
+    display: contents;
+}
+
+/* Ukedager stil */
+.calendar-weekday {
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    background-color: #ddd;
+    border: 1px solid #000000;
+}
+
+/* Stil for hver dag i kalenderen */
+.calendar-day {
+    border: 1px solid #000000;
+    padding: 5px;
+    text-align: center;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    min-height: 100px; /* Sikre nok høyde for innhold */
+}
+
+/* Nummer på dagen stil */
+.day-number {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Eventer som tekst i dagene */
+.event-text {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 4px;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px; /* Juster fontstørrelse om nødvendig */
+}
+
+/* Spesifikke stiler for PDF-utskrift */
+@media print {
+    .se-kalender {
+        padding: 0;
+        position: relative;
+        width: 100%;
+        overflow: visible;
+    }
+
+    .calendar-grid {
+        width: 100%;
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .calendar-day {
+        page-break-inside: avoid; /* Forhindre sidebrytning inne i kalenderdager */
+    }
+}
