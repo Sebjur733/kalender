@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './RedigerKalender.css'; // Pass på at CSS-filen fortsatt er der
 import { useNavigate } from 'react-router-dom'; // Importer useNavigate
-import html2pdf from 'html2pdf.js/dist/html2pdf';
+
 
 
 
