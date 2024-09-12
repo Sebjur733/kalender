@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './RedigerKalender.css'; // Pass på at CSS-filen fortsatt er der
+import { useNavigate } from 'react-router-dom'; // Importer useNavigate
 import html2pdf from 'html2pdf.js/dist/html2pdf';
 
 
@@ -31,6 +32,8 @@ const RedigerKalender = () => {
     const [selectedDay, setSelectedDay] = useState(null);
     const [eventTitle, setEventTitle] = useState('');
     const [eventDetails, setEventDetails] = useState('');
+
+    const navigate = useNavigate(); // For navigasjon mellom sider
 
     // Hent data fra localStorage når komponenten mountes
     useEffect(() => {
@@ -136,7 +139,7 @@ const RedigerKalender = () => {
         localStorage.setItem('calendarEvents', JSON.stringify(events));
 
         // Naviger til 'seKalender'-siden
-        navigate('/seKalender');
+        navigate('/se-kalender');
     };
     
     

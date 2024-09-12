@@ -16,7 +16,6 @@ const App = () => {
                     <Route path="/" element={<MainContent />} />
                     <Route path="/ny-kalender" element={<NyKalender />} />
                     <Route path="/rediger-kalender" element={<RedigerKalender />} /> 
-                    <Route path="/seKalender" element={<SeKalender />} /> {/* Ny rute */}
                 </Routes>
                 <Footer />
             </div>
