@@ -52,14 +52,16 @@ const SeKalender = () => {
         for (let day = 1; day <= totalDays; day++) {
             days.push(
                 <div key={day} className="calendar-day">
-                    <div className="day-number">{day}</div>
-                    {/* Vis eventer som er lagret for denne dagen */}
-                    {events[day] && events[day].map((event, index) => (
-                        <div key={index} className="event-text">
-                            {event.title}
-                        </div>
-                    ))}
-                </div>
+    <div className="day-number">{day}</div>
+    <div className="event-container">
+        {events[day] && events[day].map((event, index) => (
+            <div key={index} className="event-text">
+                {event.title}
+            </div>
+        ))}
+    </div>
+</div>
+
             );
         }
 

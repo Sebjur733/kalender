@@ -5,7 +5,7 @@
     padding: 1em;
     position: fixed;
     top: 10%;
-    bottom: 100px;
+    bottom: 150px;
     left: 0;
     width: 100%;
     display: flex;
@@ -47,33 +47,53 @@ h1 {
 .calendar-day {
     border: 1px solid #000000;
     padding: 5px;
-    text-align: center;
+    text-align: left; /* Justere til venstre */
     background-color: #f9f9f9;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start; /* Justere til venstre */
+    justify-content: flex-start;
     font-size: 16px;
     min-height: 100px; /* Sikre nok høyde for innhold */
+    
+}
+
+/* Container for eventer inne i kalenderdagen */
+.event-container {
+    display: flex; /* Legg til flexbox for horisontal visning */
+    flex-wrap: wrap; /* Tillat bryting til ny linje om nødvendig */
+    gap: 5px; /* Litt avstand mellom eventer */
+    width: 100%; /* Full bredde av kalenderdagen */
 }
 
 /* Nummer på dagen stil */
 .day-number {
     font-weight: bold;
     margin-bottom: 5px;
+    align-self: flex-start; /* Justere til venstre */
 }
 
 /* Eventer som tekst i dagene */
 .event-text {
     background-color: #e3f2fd;
-    color: #0d47a1;
-    padding: 5px;
-    margin-top: 5px;
+    color: #a10404;
+    padding: 1px;
     border-radius: 4px;
     text-align: left;
-    width: 100%;
+    width: auto; /* Tilpass bredde til innholdet */
     box-sizing: border-box;
     font-size: 14px; /* Juster fontstørrelse om nødvendig */
+    margin-top: 0; /* Fjern margin-top */
+    display: inline-block; /* Vise horisontalt */
+}
+
+/* Legg til et komma etter hver event, unntatt den siste */
+.event-text::after {
+    content: ','; /* Legg til et komma etter teksten */
+}
+
+.event-text:last-child::after {
+    content: ''; /* Fjern kommaet etter den siste eventen */
 }
 
 /* Spesifikke stiler for PDF-utskrift */
