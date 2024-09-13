@@ -2,7 +2,7 @@
 
 /* Generelle stiler */
 .se-kalender {
-    padding: 1em;
+    padding: 0.5em;
     position: fixed;
     top: 10%;
     bottom: 150px;
@@ -25,8 +25,8 @@ h1 {
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    width: 90%;
+    gap: 5px;
+    width: 100%;
 }
 
 /* Header for ukedager */
@@ -38,7 +38,7 @@ h1 {
 .calendar-weekday {
     font-weight: bold;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     background-color: #ddd;
     border: 1px solid #000000;
 }
@@ -46,7 +46,7 @@ h1 {
 /* Stil for hver dag i kalenderen */
 .calendar-day {
     border: 1px solid #000000;
-    padding: 5px;
+    padding: 2px;
     text-align: left; /* Justere til venstre */
     background-color: #f9f9f9;
     display: flex;
@@ -54,7 +54,7 @@ h1 {
     align-items: flex-start; /* Justere til venstre */
     justify-content: flex-start;
     font-size: 16px;
-    min-height: 100px; /* Sikre nok høyde for innhold */
+    min-height: 80px; /* Sikre nok høyde for innhold */
     
 }
 
