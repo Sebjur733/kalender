@@ -2,7 +2,7 @@
     padding: 1em;
     position: fixed; /* Fester NyKalender til visningsvinduet */
     top: 10%; /* Plasserer NyKalender 10% ned fra toppen av visningsvinduet */
-    bottom: 100px; /* Gir plass til footer */
+    bottom: 150px; /* Gir plass til footer */
     left: 0;
     width: 100%; /* Full bredde av visningsvinduet */
     display: flex;
