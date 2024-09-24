@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom'; // Importer useNavigate
 import MonthYearSelector from './MonthYearSelector';
 import './NyKalender.css'; // Pass på at CSS-filen fortsatt er der
 
+// Komponent for å lage en ny kalender
 const NyKalender = () => {
+    // States for å holde på valgt måned, år og navn på kalenderen
     const [selectedMonth, setSelectedMonth] = useState('');
     const [selectedYear, setSelectedYear] = useState('');
     const [calendarName, setCalendarName] = useState('');
@@ -11,21 +13,24 @@ const NyKalender = () => {
 
     // useEffect for å fjerne gammel kalenderdata når siden lastes inn
     useEffect(() => {
-        // Fjern gamle kalenderdata og events
+         // Fjerner gamle kalenderdata og eventuelle kalenderhendelser fra localStorage
         localStorage.removeItem('calendarData');
         localStorage.removeItem('calendarEvents');
         console.log('Gamle kalenderdata fjernet.');
     }, []);
 
+    // Oppdaterer state når måned eller år endres i MonthYearSelector-komponenten
     const handleMonthYearChange = (month, year) => {
         setSelectedMonth(month);
         setSelectedYear(year);
     };
 
+    // Oppdaterer kalendernavnet når brukeren skriver inn et navn
     const handleNameChange = (e) => {
         setCalendarName(e.target.value);
     };
 
+    // Funksjon for å opprette en ny kalender
     const handleCreateCalendar = () => {
         if (calendarName && selectedMonth && selectedYear) {
             // Her kan du implementere logikken for å lage en ny kalender

@@ -8,11 +8,14 @@ import SeKalender from './SeKalender'; // Importer SeKalender
 import Footer from './Footer';
 import './App.css';
 
+// Hovedkomponenten i applikasjonen
 const App = () => {
     return (
+        // Router håndterer navigasjon mellom sidene
         <Router>
             <div className="app">
                 <Nav />
+                {/* Definerer ruter for ulike sider */}
                 <Routes>
                     <Route path="/" element={<MainContent />} />
                     <Route path="/ny-kalender" element={<NyKalender />} />
