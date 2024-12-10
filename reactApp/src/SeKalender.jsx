@@ -2,7 +2,9 @@ import React from 'react';
 import './seKalender.css';
 import html2pdf from 'html2pdf.js/dist/html2pdf';
 
+// Komponent for å vise kalenderen
 const SeKalender = () => {
+    // Hent kalenderdata fra localStorage, eller bruk standardverdier hvis ingen data er lagret
     const kalenderData = JSON.parse(localStorage.getItem('calendarData')) || { name: '', month: 0, year: 2023 };
     const events = JSON.parse(localStorage.getItem('calendarEvents')) || {};
 
@@ -24,6 +26,7 @@ const SeKalender = () => {
     // Beregn hvilken ukedag den første dagen i måneden er
     const firstDayIndex = getFirstDayOfMonth(kalenderData.year, monthIndex);
 
+    // Funksjon for å generere PDF fra kalenderen
     const generatePDF = () => {
         const element = document.querySelector('.pdf-content'); // Velg wrapper-div som inneholder både header og kalender-grid
     
@@ -92,7 +95,7 @@ const SeKalender = () => {
                 </div>
     
                 <div className="calendar-grid">
-                    {/* Vis ukedager */}
+                    {/* Vis ukedagene som header */}
                     <div className="calendar-header">
                         {renderWeekDays()}
                     </div>
