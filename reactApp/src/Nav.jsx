@@ -7,7 +7,7 @@ const Nav = () => {
         <nav>
             <ul>
                 <li><a href="/">Hjem</a></li>
-                <li><a href="/about">Om meg</a></li>
+                <li><a href="https://www.linkedin.com/in/sebastian-jurkowski-709388327/">Om meg</a></li>
 
             </ul>
         </nav>
