@@ -102,7 +102,7 @@ const SeKalender = () => {
                     {renderDays()} {/* Vis dagene */}
                 </div>
             </div>
-            <button onClick={generatePDF}>Lagre som PDF</button>
+            <button onClick={generatePDF}>Save as PDF</button>
         </div>
     );
     
@@ -111,15 +111,15 @@ const SeKalender = () => {
 // Funksjon for å konvertere månedsnavn til indeks
 const monthNameToIndex = (monthName) => {
     const months = [
-        'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni',
-        'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
     ];
     return months.indexOf(monthName);
 };
 
 // Funksjon for å få navnene på ukedager
 const getWeekDays = () => {
-    return ['Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør', 'Søn'];
+    return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 };
 
 export default SeKalender;

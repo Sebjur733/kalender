@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 const MonthYearSelector = ({ onMonthYearChange }) => {
     const currentYear = new Date().getFullYear();
     const months = [
-        'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni',
-        'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
     ];
 
     const years = Array.from({ length: 9 }, (_, i) => currentYear + i);

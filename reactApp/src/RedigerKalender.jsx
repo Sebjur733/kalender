@@ -8,15 +8,15 @@ import { useNavigate } from 'react-router-dom'; // Importer useNavigate
 // En funksjon for å konvertere månedsnavn til indeks
 const monthNameToIndex = (monthName) => {
     const months = [
-        'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni',
-        'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
     ];
     return months.indexOf(monthName);
 };
 
 //Funksjon for å få navnene på ukedager
 const getWeekDays = () => {
-return ['Man', 'Tir', 'Ons', 'Tor', 'fre', 'Lør', 'Søn'];
+return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 };
 
 const RedigerKalender = () => {
@@ -86,7 +86,7 @@ const RedigerKalender = () => {
 
     const handleSaveEvent = () => {
         if (eventTitle.trim() === '') {
-            alert('Tittel kan ikke være tom.');
+            alert('Title cannot be empty.');
             return;
         }
     
@@ -187,14 +187,14 @@ const RedigerKalender = () => {
             className="delete-btn" 
             onClick={() => handleDeleteEvent(day, event.id)} 
             title="Slett event">
-            🗑️
+            ❌
         </button>
     </div>
 ))}
 
                     {/* Knapp for å legge til flere eventer */}
                     <button onClick={() => handleAddEventClick(day)}>
-                        Legg til event
+                        Add event
                     </button>
                 </div>
             );
@@ -220,7 +220,7 @@ const RedigerKalender = () => {
             <h2>{kalenderData.name}</h2>
             <p>Måned: {kalenderData.month + 1}</p>
             <p>År: {kalenderData.year}</p>
-            <button onClick={finishCalendar}>Neste</button>
+            <button onClick={finishCalendar}>Next</button>
             
 
             <div className="calendar-grid">
@@ -240,17 +240,17 @@ const RedigerKalender = () => {
                         <h3>Legg til event for dag {selectedDay}</h3>
                         <input
                             type="text"
-                            placeholder="Tittel"
+                            placeholder="Title"
                             value={eventTitle}
                             onChange={(e) => setEventTitle(e.target.value)}
                         />
                         <textarea
-                            placeholder="Detaljer om hendelsen"
+                            placeholder="Event details"
                             value={eventDetails}
                             onChange={(e) => setEventDetails(e.target.value)}
                         />
-                        <button onClick={handleSaveEvent}>Legg til event</button>
-                        <button onClick={handleModalClose}>Lukk</button>
+                        <button onClick={handleSaveEvent}>Add event</button>
+                        <button onClick={handleModalClose}>Close</button>
                     </div>
                 </div>
             )}

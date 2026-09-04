@@ -19,8 +19,14 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<MainContent />} />
                     <Route path="/ny-kalender" element={<NyKalender />} />
+
+                    
                     <Route path="/rediger-kalender" element={<RedigerKalender />} /> 
+
+                  
                     <Route path="/se-kalender" element={<SeKalender />} />
+
+                    
                 </Routes>
                 <Footer />
             </div>

@@ -5,9 +5,9 @@ const footer = () => {
     return (
         <footer className="footer">
             <div className="contact-info">
-                <p><strong>Navn:</strong> Sebastian Jurkowski</p>
-                <p><strong>Telefon:</strong> 97945391</p>
-                <p><strong>Mail:</strong> Sebajurko16@gmail.com</p>
+                <p><strong>Name:</strong> Sebastian Jurkowski</p>
+                <p><strong>Phone:</strong> 97945391</p>
+                <p><strong>Email:</strong> Sebajurko16@gmail.com</p>
             </div>
         </footer>
     );

@@ -5,14 +5,12 @@ import './MainContent.css'; // Importer CSS-filen for stilsetting
 const MainContent = () => {
     return (
         <div className="main-content">
-           <h1>Velg et alternativ</h1>
+           <h1>Welcome!</h1>
            <div className="button-container">
            <Link to="/ny-kalender">
-                    <button>Lag kalender</button>
+                    <button>New calendar</button>
                 </Link>
-                <Link to="/mine-kalendere">
-                    <button>Mine kalendere</button>
-                </Link>
+               
            </div>
         </div>
     );

@@ -57,12 +57,12 @@ const NyKalender = () => {
 
     return (
         <div className="ny-kalender">
-            <h1>Lag Ny Kalender</h1>
+            <h1>New calendar</h1>
             
             {/* Input for Kalendernavn */}
             <input 
                 type="text" 
-                placeholder="Navn på kalender" 
+                placeholder="Calendar name" 
                 value={calendarName} 
                 onChange={handleNameChange} 
             />
@@ -73,7 +73,7 @@ const NyKalender = () => {
            
 
             {/* Lag Kalender Knapp */}
-            <button onClick={handleCreateCalendar}>Lag kalender</button>
+            <button onClick={handleCreateCalendar}>Create calendar</button>
         </div>
     );
 };
